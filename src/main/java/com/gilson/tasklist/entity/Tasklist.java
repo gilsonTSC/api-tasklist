@@ -1,6 +1,7 @@
 package com.gilson.tasklist.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,17 +34,17 @@ public class Tasklist implements Serializable{
 	private String titulo;
 	
 	@Enumerated(EnumType.STRING)
-	private StatusTaskEnum statusTask;
+	private StatusTaskEnum status;
 	
 	private String descricao;
 	
-	private Data criacao;
+	private Date criacao;
 	
-	private Data edicao;
+	private Date edicao;
 	
-	private Data remocao;
+	private Date remocao;
 	
-	private Data conclusao;
+	private Date conclusao;
 	
 	private SituacaoTaskEnum situacao;
 
