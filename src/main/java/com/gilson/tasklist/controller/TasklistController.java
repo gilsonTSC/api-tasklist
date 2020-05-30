@@ -82,6 +82,13 @@ public class TasklistController {
 				return ResponseEntity.badRequest().body("Não foi possível atualizar o status da Task.");
 			}
 			
+			if(statusSelecionado.equals(StatusTaskEnum.CONCLUIDO)) {
+				entity.setConclusao(new Date());
+			}
+			if(statusSelecionado.equals(StatusTaskEnum.CANCELADO)) {
+				entity.setRemocao(new Date());
+			}
+			
 			try {
 				entity.setStatus(statusSelecionado);
 				this.service.atualizar(entity);
