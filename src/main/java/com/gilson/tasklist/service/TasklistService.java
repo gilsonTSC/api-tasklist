@@ -1,5 +1,6 @@
 package com.gilson.tasklist.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.gilson.tasklist.entity.Tasklist;
@@ -12,6 +13,8 @@ public interface TasklistService {
 	Tasklist atualizar(Tasklist tasklist);
 	
 	void deletar(Tasklist tasklist);
+	
+	List<Tasklist> buscarTodos();
 	
 	Optional<Tasklist> buscarPorId(Long id );
 	

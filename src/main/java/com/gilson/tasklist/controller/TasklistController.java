@@ -1,5 +1,8 @@
 package com.gilson.tasklist.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +29,16 @@ public class TasklistController {
 	@Autowired
 	private TasklistService service;
 	
+	@GetMapping
+	public ResponseEntity<Object> buscarTodos() {
+		List<Tasklist> list = this.service.buscarTodos();
+		
+		List<TasklistDTO> dto = list.stream().map(obj -> this.converter(obj)).collect(Collectors.toList());
+		return new ResponseEntity<Object>(dto, HttpStatus.OK);
+	}
+	
 	@GetMapping("{id}")
-	public ResponseEntity<Object> obterTask( @PathVariable("id") Long id ) {
+	public ResponseEntity<Object> buscar( @PathVariable("id") Long id ) {
 		return this.service.buscarPorId(id)
 					.map( tasklist -> new ResponseEntity<Object>(this.converter(tasklist), HttpStatus.OK) )
 					.orElseGet( () -> new ResponseEntity<Object>(HttpStatus.NOT_FOUND) );
@@ -99,6 +110,7 @@ public class TasklistController {
 				.criacao(tasklist.getCriacao())
 				.conclusao(tasklist.getConclusao())
 				.remocao(tasklist.getRemocao())
+				.situacao(tasklist.getSituacao())
 				.build();
 	}
 	
@@ -112,6 +124,7 @@ public class TasklistController {
 				.criacao(dto.getCriacao())
 				.conclusao(dto.getConclusao())
 				.remocao(dto.getRemocao())
+				.situacao(dto.getSituacao())
 				.build();
 	}
 	

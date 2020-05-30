@@ -1,5 +1,6 @@
 package com.gilson.tasklist.service.impl;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -43,6 +44,11 @@ public class TasklistServiceImpl implements TasklistService{
 		Objects.requireNonNull(tasklist.getId());
 		tasklist.setSituacao(SituacaoTaskEnum.INATIVO);
 		this.atualizar(tasklist);
+	}
+	
+	@Override
+	public List<Tasklist> buscarTodos() {
+		return this.repository.findAll();
 	}
 
 	@Override

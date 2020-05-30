@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gilson.tasklist.util.enums.SituacaoTaskEnum;
 import com.gilson.tasklist.util.enums.StatusTaskEnum;
 
 import lombok.AllArgsConstructor;
@@ -41,5 +42,7 @@ public class TasklistDTO {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
 	private Date conclusao;
+	
+	private SituacaoTaskEnum situacao;
 	
 }
