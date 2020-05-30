@@ -1,5 +1,6 @@
 package com.gilson.tasklist.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,7 @@ public class TasklistController {
 	@PostMapping
 	public ResponseEntity<Object> salvar( @RequestBody TasklistDTO dto ) {
 		try {
+			dto.setCriacao(new Date());
 			Tasklist entidade = this.converter(dto);
 			entidade = this.service.salvar(entidade);
 			return ResponseEntity.ok(entidade);
@@ -57,6 +59,7 @@ public class TasklistController {
 	
 	@PutMapping("{id}")
 	public ResponseEntity atualizar( @PathVariable("id") Long id, @RequestBody TasklistDTO dto ) {
+		dto.setEdicao(new Date());
 		return this.service.buscarPorId(id).map( entity -> {
 			try {
 				Tasklist tasklist = this.converter(dto);
@@ -93,8 +96,9 @@ public class TasklistController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Object> deletar( @PathVariable("id") Long id ) {
-		return this.service.buscarPorId(id).map( entidade -> {
-			this.service.deletar(entidade);
+		return this.service.buscarPorId(id).map( entity -> {
+			entity.setRemocao(new Date());
+			this.service.deletar(entity);
 			return new ResponseEntity<Object>( HttpStatus.NO_CONTENT );
 		}).orElseGet( () -> 
 			new ResponseEntity<Object>("Task não encontrada na base de Dados.", HttpStatus.BAD_REQUEST) );

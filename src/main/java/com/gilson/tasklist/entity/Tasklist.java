@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gilson.tasklist.util.enums.SituacaoTaskEnum;
 import com.gilson.tasklist.util.enums.StatusTaskEnum;
 
@@ -40,14 +41,19 @@ public class Tasklist implements Serializable{
 	
 	private String descricao;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date criacao;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date edicao;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date remocao;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date conclusao;
 	
+	@Enumerated(EnumType.STRING)
 	private SituacaoTaskEnum situacao;
 
 }
