@@ -26,7 +26,7 @@ public class TasklistDTO {
 	private String titulo;
 	
 	@NotNull(message = "Informe o status")
-	@Pattern(regexp="^(CONCLUIDA|ANDAMENTO|CANCELADO)$", message = "Para o status somente são aceitos os valores CONCLIDO, ANDAMENTO ou CANCELADO")
+	@Pattern(regexp="^(CONCLUIDO|ANDAMENTO|CANCELADO)$", message = "Para o status somente são aceitos os valores CONCLUIDO, ANDAMENTO ou CANCELADO")
 	private StatusTaskEnum status;
 	
 	private String descricao;
