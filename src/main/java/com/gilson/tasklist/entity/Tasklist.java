@@ -15,11 +15,13 @@ import com.gilson.tasklist.util.enums.SituacaoTaskEnum;
 import com.gilson.tasklist.util.enums.StatusTaskEnum;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tasklist implements Serializable{
