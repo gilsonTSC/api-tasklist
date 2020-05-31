@@ -60,6 +60,12 @@ public class TasklistController {
 	@PutMapping("{id}")
 	public ResponseEntity atualizar( @PathVariable("id") Long id, @RequestBody TasklistDTO dto ) {
 		dto.setEdicao(new Date());
+		if(dto.getStatus().equals(StatusTaskEnum.CONCLUIDO)) {
+			dto.setConclusao(new Date());
+		}
+		if(dto.getStatus().equals(StatusTaskEnum.CANCELADO)) {
+			dto.setRemocao(new Date());
+		}
 		return this.service.buscarPorId(id).map( entity -> {
 			try {
 				Tasklist tasklist = this.converter(dto);
